@@ -1,0 +1,280 @@
+optimizer = tf.train.experimental.enable_mixed_precision_graph_rewrite(optimizer)
+
+"opt" must be an instance of a tf.train.Optimizer or a tf.keras.optimizers.Optimizer  :   tf.trian  ... tf.keras
+
+tf.train can't save optimizer , so user tf.keras 
+Keras通过检查架构来保存模型。 目前，它无法保存TensorFlow优化器（来自tf.train）。 使用这些时，您需要在加载后重新编译模型，并且您将失去优化器的状态。
+
+
+origin 
+
+Layer (type)                 Output Shape              Param #   
+=================================================================
+image (InputLayer)           (None, None, None, 3)     0         
+_________________________________________________________________
+conv1_pad (ZeroPadding2D)    (None, None, None, 3)     0         
+_________________________________________________________________
+conv1 (Conv2D)               (None, None, None, 32)    864       
+_________________________________________________________________
+conv1_bn (BatchNormalization (None, None, None, 32)    128       
+_________________________________________________________________
+conv1_relu (ReLU)            (None, None, None, 32)    0         
+_________________________________________________________________
+conv_dw_1 (DepthwiseConv2D)  (None, None, None, 32)    288       
+_________________________________________________________________
+conv_dw_1_bn (BatchNormaliza (None, None, None, 32)    128       
+_________________________________________________________________
+conv_dw_1_relu (ReLU)        (None, None, None, 32)    0         
+_________________________________________________________________
+conv_pw_1 (Conv2D)           (None, None, None, 64)    2048      
+_________________________________________________________________
+conv_pw_1_bn (BatchNormaliza (None, None, None, 64)    256       
+_________________________________________________________________
+conv_pw_1_relu (ReLU)        (None, None, None, 64)    0         
+_________________________________________________________________
+conv_pad_2 (ZeroPadding2D)   (None, None, None, 64)    0         
+_________________________________________________________________
+conv_dw_2 (DepthwiseConv2D)  (None, None, None, 64)    576       
+_________________________________________________________________
+conv_dw_2_bn (BatchNormaliza (None, None, None, 64)    256       
+_________________________________________________________________
+conv_dw_2_relu (ReLU)        (None, None, None, 64)    0         
+_________________________________________________________________
+conv_pw_2 (Conv2D)           (None, None, None, 128)   8192      
+_________________________________________________________________
+conv_pw_2_bn (BatchNormaliza (None, None, None, 128)   512       
+_________________________________________________________________
+conv_pw_2_relu (ReLU)        (None, None, None, 128)   0         
+_________________________________________________________________
+conv_dw_3 (DepthwiseConv2D)  (None, None, None, 128)   1152      
+_________________________________________________________________
+conv_dw_3_bn (BatchNormaliza (None, None, None, 128)   512       
+_________________________________________________________________
+conv_dw_3_relu (ReLU)        (None, None, None, 128)   0         
+_________________________________________________________________
+conv_pw_3 (Conv2D)           (None, None, None, 128)   16384     
+_________________________________________________________________
+conv_pw_3_bn (BatchNormaliza (None, None, None, 128)   512       
+_________________________________________________________________
+conv_pw_3_relu (ReLU)        (None, None, None, 128)   0         
+_________________________________________________________________
+conv_pad_4 (ZeroPadding2D)   (None, None, None, 128)   0         
+_________________________________________________________________
+conv_dw_4 (DepthwiseConv2D)  (None, None, None, 128)   1152      
+_________________________________________________________________
+conv_dw_4_bn (BatchNormaliza (None, None, None, 128)   512       
+_________________________________________________________________
+conv_dw_4_relu (ReLU)        (None, None, None, 128)   0         
+_________________________________________________________________
+conv_pw_4 (Conv2D)           (None, None, None, 256)   32768     
+_________________________________________________________________
+conv_pw_4_bn (BatchNormaliza (None, None, None, 256)   1024      
+_________________________________________________________________
+conv_pw_4_relu (ReLU)        (None, None, None, 256)   0         
+_________________________________________________________________
+conv_dw_5 (DepthwiseConv2D)  (None, None, None, 256)   2304      
+_________________________________________________________________
+conv_dw_5_bn (BatchNormaliza (None, None, None, 256)   1024      
+_________________________________________________________________
+conv_dw_5_relu (ReLU)        (None, None, None, 256)   0         
+_________________________________________________________________
+conv_pw_5 (Conv2D)           (None, None, None, 256)   65536     
+_________________________________________________________________
+conv_pw_5_bn (BatchNormaliza (None, None, None, 256)   1024      
+_________________________________________________________________
+conv_pw_5_relu (ReLU)        (None, None, None, 256)   0         
+_________________________________________________________________
+conv_pad_6 (ZeroPadding2D)   (None, None, None, 256)   0         
+_________________________________________________________________
+conv_dw_6 (DepthwiseConv2D)  (None, None, None, 256)   2304      
+_________________________________________________________________
+conv_dw_6_bn (BatchNormaliza (None, None, None, 256)   1024      
+_________________________________________________________________
+conv_dw_6_relu (ReLU)        (None, None, None, 256)   0         
+_________________________________________________________________
+conv_pw_6 (Conv2D)           (None, None, None, 512)   131072    
+_________________________________________________________________
+conv_pw_6_bn (BatchNormaliza (None, None, None, 512)   2048      
+_________________________________________________________________
+conv_pw_6_relu (ReLU)        (None, None, None, 512)   0         
+_________________________________________________________________
+conv_dw_7 (DepthwiseConv2D)  (None, None, None, 512)   4608      
+_________________________________________________________________
+conv_dw_7_bn (BatchNormaliza (None, None, None, 512)   2048      
+_________________________________________________________________
+conv_dw_7_relu (ReLU)        (None, None, None, 512)   0         
+_________________________________________________________________
+conv_pw_7 (Conv2D)           (None, None, None, 512)   262144    
+_________________________________________________________________
+conv_pw_7_bn (BatchNormaliza (None, None, None, 512)   2048      
+_________________________________________________________________
+conv_pw_7_relu (ReLU)        (None, None, None, 512)   0         
+_________________________________________________________________
+conv_dw_8 (DepthwiseConv2D)  (None, None, None, 512)   4608      
+_________________________________________________________________
+conv_dw_8_bn (BatchNormaliza (None, None, None, 512)   2048      
+_________________________________________________________________
+conv_dw_8_relu (ReLU)        (None, None, None, 512)   0         
+_________________________________________________________________
+conv_pw_8 (Conv2D)           (None, None, None, 512)   262144    
+_________________________________________________________________
+conv_pw_8_bn (BatchNormaliza (None, None, None, 512)   2048      
+_________________________________________________________________
+conv_pw_8_relu (ReLU)        (None, None, None, 512)   0         
+_________________________________________________________________
+conv_dw_9 (DepthwiseConv2D)  (None, None, None, 512)   4608      
+_________________________________________________________________
+conv_dw_9_bn (BatchNormaliza (None, None, None, 512)   2048      
+_________________________________________________________________
+conv_dw_9_relu (ReLU)        (None, None, None, 512)   0         
+_________________________________________________________________
+conv_pw_9 (Conv2D)           (None, None, None, 512)   262144    
+_________________________________________________________________
+conv_pw_9_bn (BatchNormaliza (None, None, None, 512)   2048      
+_________________________________________________________________
+conv_pw_9_relu (ReLU)        (None, None, None, 512)   0         
+_________________________________________________________________
+conv_dw_10 (DepthwiseConv2D) (None, None, None, 512)   4608      
+_________________________________________________________________
+conv_dw_10_bn (BatchNormaliz (None, None, None, 512)   2048      
+_________________________________________________________________
+conv_dw_10_relu (ReLU)       (None, None, None, 512)   0         
+_________________________________________________________________
+conv_pw_10 (Conv2D)          (None, None, None, 512)   262144    
+_________________________________________________________________
+conv_pw_10_bn (BatchNormaliz (None, None, None, 512)   2048      
+_________________________________________________________________
+conv_pw_10_relu (ReLU)       (None, None, None, 512)   0         
+_________________________________________________________________
+conv_dw_11 (DepthwiseConv2D) (None, None, None, 512)   4608      
+_________________________________________________________________
+conv_dw_11_bn (BatchNormaliz (None, None, None, 512)   2048      
+_________________________________________________________________
+conv_dw_11_relu (ReLU)       (None, None, None, 512)   0         
+_________________________________________________________________
+conv_pw_11 (Conv2D)          (None, None, None, 512)   262144    
+_________________________________________________________________
+conv_pw_11_bn (BatchNormaliz (None, None, None, 512)   2048      
+_________________________________________________________________
+conv_pw_11_relu (ReLU)       (None, None, None, 512)   0         
+_________________________________________________________________
+conv_pad_12 (ZeroPadding2D)  (None, None, None, 512)   0         
+_________________________________________________________________
+conv_dw_12 (DepthwiseConv2D) (None, None, None, 512)   4608      
+_________________________________________________________________
+conv_dw_12_bn (BatchNormaliz (None, None, None, 512)   2048      
+_________________________________________________________________
+conv_dw_12_relu (ReLU)       (None, None, None, 512)   0         
+_________________________________________________________________
+conv_pw_12 (Conv2D)          (None, None, None, 1024)  524288    
+_________________________________________________________________
+conv_pw_12_bn (BatchNormaliz (None, None, None, 1024)  4096      
+_________________________________________________________________
+conv_pw_12_relu (ReLU)       (None, None, None, 1024)  0         
+_________________________________________________________________
+conv_dw_13 (DepthwiseConv2D) (None, None, None, 1024)  9216      
+_________________________________________________________________
+conv_dw_13_bn (BatchNormaliz (None, None, None, 1024)  4096      
+_________________________________________________________________
+conv_dw_13_relu (ReLU)       (None, None, None, 1024)  0         
+_________________________________________________________________
+conv_pw_13 (Conv2D)          (None, None, None, 1024)  1048576   
+_________________________________________________________________
+conv_pw_13_bn (BatchNormaliz (None, None, None, 1024)  4096      
+_________________________________________________________________
+conv_pw_13_relu (ReLU)       (None, None, None, 1024)  0         
+_________________________________________________________________
+global_max_pooling2d_1 (Glob (None, 1024)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 64)                65600     
+_________________________________________________________________
+activation_1 (Activation)    (None, 64)                0         
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 64)                0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 32)                2080      
+_________________________________________________________________
+activation_2 (Activation)    (None, 32)                0         
+_________________________________________________________________
+dense_3 (Dense)              (None, 8)                 264       
+=================================================================
+Total params: 3,296,808
+Trainable params: 3,274,920
+Non-trainable params: 21,888
+_________________________________________________________________
+
+Process finished with exit code 1
+
+
+方法1：只保存模型的权重和偏置
+这种方法不会保存整个网络的结构，只是保存模型的权重和偏置，所以在后期恢复模型之前，必须手动创建和之前模型一模一样的模型，以保证权重和偏置的维度和保存之前的相同。
+
+model.save_weights('./save_weights/my_save_weights')
+
+
+
+model = create_model()
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+ 
+# step9 恢复权重
+model.load_weights('./save_weights/my_save_weights')
+
+方法2：直接保存整个模型
+
+
+save(
+    filepath,
+    overwrite=True,
+    include_optimizer=True,
+    save_format=None
+)
+
+model.save('my_model.h5')
+
+
+restored_model = tf.keras.models.load_model('my_model.h5')
+ 
+# step9 测试模型
+loss, acc = restored_model.evaluate(x_test, y_test)
+
+
+方法3：使用tf.keras.callbacks.ModelCheckpoint方法在训练过程中保存模型
+
+save_weights_only：若设置为True，则只保存模型权重，否则将保存整个模型（包括模型结构，配置信息等）
+
+Checkpoint只包括模型权重。它假定你了解网络结构。这也可以序列化成JSON或YAML格式。
+
+
+
+
+
+
+for saving model optimizer use tf.keras . all params are same:
+
+
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/tensorflow/python/keras/mixed_precision/experimental/loss_scale_optimizer.py", line 198, in get_config
+    raise NotImplementedError('get_config() is not yet implemented for '
+NotImplementedError: get_config() is not yet implemented for LossScaleOptimizers
+  
+
+  # TODO(reedwm): Implement get_config and from_config. This will first require
+  # implementing deserialization support for OptimizerV2.
+  def get_config(self):
+    raise NotImplementedError('get_config() is not yet implemented for '
+                              'LossScaleOptimizers')
+
+  @classmethod
+  def from_config(cls, config, custom_objects=None):
+    raise NotImplementedError('from_config() is not yet implemented for '
+                              'LossScaleOptimizers')
+
+
+ so we should load weight and build opt when load model
+
+
+MY WINDOWS
+No (suitable) GPUs detected, skipping auto_mixed_precision graph optimizer
+
+

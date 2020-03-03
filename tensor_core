@@ -1,0 +1,8 @@
+Choose mini-batch to be a multiple of 8
+Choose linear layer dimensions to be a multiple of 8
+Choose convolution layer channel counts to be a multiple of 8
+For classification problems, pad vocabulary to be a multiple of 8
+For sequence problems, pad the sequence length to be a multiple of 8
+
+
+ "opt" must be an instance of a tf.train.Optimizer or a tf.keras.optimizers.Optimizer,

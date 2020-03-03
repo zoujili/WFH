@@ -1,0 +1,23 @@
+1. minst lstm -> work
+2. input: like lstm   y int64  -> unit8  | x unit8  -> float32  not work
+3. like minst: model.fit(x_train, y_train, epochs=20, batch_size=128, verbose=1) ok
+   so cancle        
+        # validation_data=val_generator,
+        # validation_steps=40,
+   it's work
+
+
+
+4. like minst: score = model.evaluate(x_test, y_test,batch_size=128, verbose=1)
+
+tensorflow.python.framework.errors_impl.InvalidArgumentError: 2 root error(s) found.
+  (0) Invalid argument: TensorArray dtype is float but Op is trying to write dtype half.
+	 [[{{node lstm_1/while/TensorArrayWrite/TensorArrayWriteV3}}]]
+	 [[metrics/acc/Mean/_75]]
+  (1) Invalid argument: TensorArray dtype is float but Op is trying to write dtype half.
+	 [[{{node lstm_1/while/TensorArrayWrite/TensorArrayWriteV3}}]]
+
+not work 
+
+ so the root cause is  model.evaluate
+ bu not use lstm but cnn  , it's work

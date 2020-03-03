@@ -1,0 +1,14 @@
+0.9743104806934594
+0.9893308980755524
+
+
+  (0) Failed precondition: Error while reading resource variable conv_dw_7_bn/beta from Container: localhost. This could mean that the variable was uninitialized. Not found: Container localhost does not exist. (Could not find resource: localhost/conv_dw_7_bn/beta)
+	 [[{{node conv_dw_7_bn/ReadVariableOp_1}}]]
+	 [[dense_3/Sigmoid/_3]]
+  (1) Failed precondition: Error while reading resource variable conv_dw_7_bn/beta from Container: localhost. This could mean that the variable was uninitialized. Not found: Container localhost does not exist. (Could not find resource: localhost/conv_dw_7_bn/beta)
+	 [[{{node conv_dw_7_bn/ReadVariableOp_1}}]]
+
+
+ module 'tensorflow.python.keras.applications.mobilenet' has no attribute 'relu6'
+
+In latest Keras versions, MobileNet's components have been integrated with the rest of Keras' layers, so they are not available anymore as parts of the mobilenet package
